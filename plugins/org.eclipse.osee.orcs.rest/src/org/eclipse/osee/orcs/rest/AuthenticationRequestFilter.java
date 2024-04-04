@@ -116,9 +116,9 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
       } catch (Exception ex) {
          orcsApi.getActivityLog().createThrowableEntry(CoreActivityTypes.OSEE_ERROR, ex);
       }
-      if (!exceptionList && orcsApi.userService().getUser().isInvalid()) {
-         unauthorized(requestContext);
-      }
+      //      if (!exceptionList && orcsApi.userService().getUser().isInvalid()) {
+      //         unauthorized(requestContext);
+      //      }
       if (activityLog.isEnabled()) {
          try {
             String message = String.format("%s %s", requestContext.getMethod(), requestContext.getUriInfo().getPath());
