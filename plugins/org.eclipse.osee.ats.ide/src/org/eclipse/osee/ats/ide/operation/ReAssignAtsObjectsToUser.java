@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.ats.ide.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -117,6 +122,14 @@ public class ReAssignAtsObjectsToUser extends AbstractBlam {
       buffer.append("<XWidget xwidgetType=\"XMembersCombo\" displayName=\"" + TO_ASSIGNEE + "\" />");
       buffer.append("</xWidgets>");
       return buffer.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("", WidgetId.XMembersComboWidget);
+      wb.andWidget("", WidgetId.XMembersComboWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.ats.ide.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -76,6 +80,14 @@ public class MoveTeamWorkflowsBlam extends AbstractBlam {
          "<XWidget xwidgetType=\"XListDropViewer\" displayName=\"" + DEST_TEAM_WORKFLOW + "\" />" +
          //
          "</xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget(SOURCE_TEAM_WORKFLOWS, WidgetId.XListDropViewerWidget);
+      wb.andWidget(DEST_TEAM_WORKFLOW, WidgetId.XListDropViewerWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

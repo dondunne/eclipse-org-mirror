@@ -223,6 +223,12 @@ public class PublishingClearCachesBlam extends AbstractBlam {
       return "<xWidgets/>";
    }
 
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      return wb.getXWidgetDatas();
+   }
+
    /**
     * When the property {@link OseeProperties#OSEE_HEALTH_SERVERS_KEY} contains a list of servers a JaxRS
     * {@link WebTarget} is used to request the remote server to clear it's caches. When the property is not set REST API

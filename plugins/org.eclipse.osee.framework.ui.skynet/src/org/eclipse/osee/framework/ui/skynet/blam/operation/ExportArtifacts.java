@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -129,6 +133,14 @@ public class ExportArtifacts extends AbstractBlam {
    @Override
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XCheckBox\" horizontalLabel=\"true\" labelAfter=\"true\" displayName=\"Include Children\" /><XWidget xwidgetType=\"XListDropViewer\" displayName=\"artifacts\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Include Children", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      wb.andWidget("artifacts", WidgetId.XListDropViewerWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

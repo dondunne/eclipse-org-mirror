@@ -69,6 +69,19 @@ public class XWidgetBuilder {
       return this;
    }
 
+   public XWidgetBuilder andWidget(org.eclipse.osee.framework.core.widget.WidgetId widgetId) {
+      newXWidget();
+      widData.setXWidgetName(widgetId.getName());
+      return this;
+   }
+
+   public XWidgetBuilder andWidget(String displayName, org.eclipse.osee.framework.core.widget.WidgetId widgetId) {
+      newXWidget();
+      widData.setName(displayName);
+      widData.setXWidgetName(widgetId.getName());
+      return this;
+   }
+
    public XWidgetBuilder andWidget(AttributeTypeToken attrType, String widgetType) {
       newXWidget();
       widData.getXOptionHandler().add(XOption.SINGLE_SELECT);

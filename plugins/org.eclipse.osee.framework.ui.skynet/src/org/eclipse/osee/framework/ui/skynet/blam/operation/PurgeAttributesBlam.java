@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -77,6 +81,14 @@ public class PurgeAttributesBlam extends AbstractBlam {
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XListDropViewer\" displayName=\"artifacts\" /> " + //
          "<XWidget xwidgetType=\"XAttributeTypeMultiChoiceSelect\" displayName=\"Attribute Type(s) to purge\" multiSelect=\"true\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("artifacts", WidgetId.XListDropViewerWidget);
+      wb.andWidget("Attribute Type(s) to purge", WidgetId.XAttributeTypeMultiChoiceSelectWidget).andMultiSelect();
+      return wb.getXWidgetDatas();
    }
 
    @Override

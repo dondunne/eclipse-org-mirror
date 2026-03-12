@@ -106,12 +106,12 @@ jobs:
       - name: osee_server_main_ref
         id: osee_server_main_ref
         shell: bash
-        run: echo "osee_server_main_ref=ghcr.io/${{ github.repository }}/osee-server:latest" >> "$GITHUB_OUTPUT"
+        run: echo "osee_server_main_ref=ghcr.io/eclipse-osee/org.eclipse.osee/osee-server:latest" >> "$GITHUB_OUTPUT"
 
       - name: osee_server_latest_ref
         id: osee_server_latest_ref
         shell: bash
-        run: echo "osee_server_latest_ref=ghcr.io/${{ github.repository }}/osee-server${{steps.docker_ref.outputs.docker_current_ref}}:latest" >> "$GITHUB_OUTPUT"
+        run: echo "osee_server_latest_ref=ghcr.io/eclipse-osee/org.eclipse.osee/osee-server${{steps.docker_ref.outputs.docker_current_ref}}:latest" >> "$GITHUB_OUTPUT"
 
       - id: osee_server_image_ref
         shell: bash
@@ -125,12 +125,12 @@ jobs:
       - name: osee_postgres_main_ref
         id: osee_postgres_main_ref
         shell: bash
-        run: echo "osee_postgres_main_ref=ghcr.io/${{ github.repository }}/osee-postgres:latest" >> "$GITHUB_OUTPUT"
+        run: echo "osee_postgres_main_ref=ghcr.io/eclipse-osee/org.eclipse.osee/osee-postgres:latest" >> "$GITHUB_OUTPUT"
 
       - name: osee_postgres_latest_ref
         id: osee_postgres_latest_ref
         shell: bash
-        run: echo "osee_postgres_latest_ref=ghcr.io/${{ github.repository }}/osee-postgres${{steps.docker_ref.outputs.docker_current_ref}}:latest" >> "$GITHUB_OUTPUT"
+        run: echo "osee_postgres_latest_ref=ghcr.io/eclipse-osee/org.eclipse.osee/osee-postgres${{steps.docker_ref.outputs.docker_current_ref}}:latest" >> "$GITHUB_OUTPUT"
 
       - id: osee_postgres_image_ref
         shell: bash
@@ -198,9 +198,9 @@ jobs:
             IMAGE_DIRECTORY=.github/docker/utility/osee-postgres
           push: "true"
           tags: |
-            ghcr.io/${{ github.repository }}/osee-postgres${{steps.docker_ref.outputs.docker_current_ref}}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}/osee-postgres${{steps.docker_ref.outputs.docker_current_ref}}:${{ steps.date.outputs.timestamp }}
-            ghcr.io/${{ github.repository }}/osee-postgres${{steps.docker_ref.outputs.docker_current_ref}}:latest
+            ghcr.io/eclipse-osee/org.eclipse.osee/osee-postgres${{steps.docker_ref.outputs.docker_current_ref}}:${{ github.sha }}
+            ghcr.io/eclipse-osee/org.eclipse.osee/osee-postgres${{steps.docker_ref.outputs.docker_current_ref}}:${{ steps.date.outputs.timestamp }}
+            ghcr.io/eclipse-osee/org.eclipse.osee/osee-postgres${{steps.docker_ref.outputs.docker_current_ref}}:latest
 
   validate_osee_build_linux:
     runs-on: ubuntu-latest

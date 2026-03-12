@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.define.ide.traceability.blam;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -84,6 +89,17 @@ public class RemoveObjectIdsFromTraceUnits extends AbstractBlam {
          "<XWidget xwidgetType=\"XCheckBox\" displayName=\"File With Embedded Paths\" labelAfter=\"true\" horizontalLabel=\"true\" />");
       builder.append("</xWidgets>");
       return builder.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Select File Or Folder (file can have a list of folders separated by newlines)", WidgetId.XLabelWidget);
+      wb.andWidget("Select File", WidgetId.XTextWithFileSelDialogWidget);
+      wb.andWidget("Select Folder", WidgetId.XTextWithDirSelDialogWidget);
+      wb.andWidget("Include Sub-Folders", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      wb.andWidget("File With Embedded Paths", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      return wb.getXWidgetDatas();
    }
 
    private void checkPath(String filePath, String type) {

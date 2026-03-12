@@ -12,6 +12,11 @@
  **********************************************************************/
 package org.eclipse.osee.ats.ide.branch;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -57,6 +62,15 @@ public class CreateAtsBaselineBranchBlam extends AbstractBlam {
          "<XWidget xwidgetType=\"XCheckBox\" displayName=\"" + APPLY_ACCESS_CONTROL + "\" defaultValue=\"true\" labelAfter=\"true\" horizontalLabel=\"true\" />");
       builder.append("</xWidgets>");
       return builder.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget(PARENT_BRANCH, WidgetId.XBranchSelectWidget);
+      wb.andWidget(BRANCH_NAME, WidgetId.XTextWidget);
+      wb.andWidget(APPLY_ACCESS_CONTROL, WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel().andDefault("true");
+      return wb.getXWidgetDatas();
    }
 
    @Override

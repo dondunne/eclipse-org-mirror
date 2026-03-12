@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.define.ide.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -45,6 +49,13 @@ public class DuplicateParentBlam extends AbstractBlam {
       return "<xWidgets>" + //
          "<XWidget xwidgetType=\"XBranchSelectWidget\" displayName=\"Branch\" />" + //
          "</xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Branch", WidgetId.XBranchSelectWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

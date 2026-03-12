@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -44,6 +49,14 @@ public class SwitchParentBranch extends AbstractBlam {
    @Override
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XText\" displayName=\"Branch List\" /><XWidget xwidgetType=\"XBranchSelectWidget\" displayName=\"New Parent Branch\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Branch List", WidgetId.XTextWidget);
+      wb.andWidget("Branch", WidgetId.XBranchSelectWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

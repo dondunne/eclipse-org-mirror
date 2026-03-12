@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.define.ide.traceability.blam;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -76,6 +80,18 @@ public class AddTraceMarksToTraceUnits extends AbstractBlam {
          "<XWidget xwidgetType=\"XBranchSelectWidget\" displayName=\"Requirements Branch\" toolTip=\"Select a requirements branch.\" />");
       builder.append("</xWidgets>");
       return builder.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Select File Or Folder (file can have a list of folders separated by newlines)", WidgetId.XLabelWidget);
+      wb.andWidget("Select File", WidgetId.XTextWithFileSelDialogWidget);
+      wb.andWidget("Select Folder", WidgetId.XTextWithDirSelDialogWidget);
+      wb.andWidget("Select Trace Types:", WidgetId.XLabelWidget);
+      wb.andWidget("Include Sub-Folders", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      wb.andWidget("Requirements Branch", WidgetId.XBranchSelectWidget).andToolTip("Select a requirements branch.");
+      return wb.getXWidgetDatas();
    }
 
    private void checkPath(String filePath, String type) {

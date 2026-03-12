@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.ats.ide.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -118,6 +122,15 @@ public class ConvertWorkflowStatesBlam extends AbstractBlam {
          "<XWidget xwidgetType=\"XCheckBox\" displayName=\"" + PERSIST + "\" defaultValue=\"false\"/>" +
          //
          "</xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget(SOURCE_TEAM_WORKFLOWS, WidgetId.XListDropViewerWidget);
+      wb.andWidget(FROM_TO_MAP, WidgetId.XTextWidget).andHorizLabel();
+      wb.andWidget(PERSIST, WidgetId.XCheckBoxWidget).andDefault("false");
+      return wb.getXWidgetDatas();
    }
 
    @Override

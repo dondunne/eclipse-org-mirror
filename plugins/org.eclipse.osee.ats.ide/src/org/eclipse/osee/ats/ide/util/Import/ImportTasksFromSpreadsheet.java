@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.ats.ide.util.Import;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -118,6 +122,17 @@ public class ImportTasksFromSpreadsheet extends AbstractBlam {
          "<XWidget xwidgetType=\"XCheckBox\" displayName=\"" + EMAIL_POCS + "\" labelAfter=\"true\" horizontalLabel=\"true\"/>");
       buffer.append("</xWidgets>");
       return buffer.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Open Excel Import Example Spreadsheet", WidgetId.XButtonPushWidget);
+      wb.andWidget("", WidgetId.XListDropViewerWidget);
+      wb.andWidget("", WidgetId.XTextWithFileSelDialogWidget);
+      wb.andWidget(FIX_TITLES, WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      wb.andWidget(EMAIL_POCS, WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      return wb.getXWidgetDatas();
    }
 
    @Override
