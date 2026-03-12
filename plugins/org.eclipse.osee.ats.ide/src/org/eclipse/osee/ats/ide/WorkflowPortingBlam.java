@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.ats.ide;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+import org.eclipse.osee.ats.api.util.WidgetIdAts;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -108,6 +113,14 @@ public class WorkflowPortingBlam extends AbstractBlam {
    @Override
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XListDropViewer\" displayName=\"" + SOURCE_WORKFLOWS + "\" /><XWidget xwidgetType=\"XActionableItemCombo\" displayName=\"" + ACTIONABLE_ITEM + "\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("", WidgetId.XListDropViewerWidget);
+      wb.andWidget(WidgetIdAts.XActionableItemComboWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

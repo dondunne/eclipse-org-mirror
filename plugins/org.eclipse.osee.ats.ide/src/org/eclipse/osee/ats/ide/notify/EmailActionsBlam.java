@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.ats.ide.notify;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -239,6 +243,17 @@ public class EmailActionsBlam extends AbstractBlam {
       return "Loop through all dropped ATS Workflows and email to assignee(s) with message.  " //
          + "Note: User will get one email containing all items they are assigned/originated.  " //
          + "Note: Body is plain text and will be shown as is.";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("", WidgetId.XListDropViewerWidget);
+      wb.andWidget("Subject", WidgetId.XTextWidget);
+      wb.andWidget("XCombo("+EmailRecipient.Assignees.toString()+","+EmailRecipient.Originator.toString()+")").andDefault("");
+      wb.andWidget("Body", WidgetId.XTextWidget);
+      wb.andWidget("Include Cancel Hyperlink", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      return wb.getXWidgetDatas();
    }
 
    @Override

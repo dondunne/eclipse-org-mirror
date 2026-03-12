@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import static org.eclipse.osee.framework.core.enums.CoreBranches.COMMON;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,6 +106,15 @@ public class PopulateUserGroupBlam extends AbstractBlam {
    @Override
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XArtifactList\" displayName=\"User Groups\" multiSelect=\"true\" /><XWidget xwidgetType=\"XCheckBox\" horizontalLabel=\"true\" labelAfter=\"true\" displayName=\"Body is html\" /><XWidget xwidgetType=\"XText\" displayName=\"Email Addresses\" fill=\"Vertically\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("User Groups", WidgetId.XArtifactListWidget).andMultiSelect();
+      wb.andWidget("Body is html", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      wb.andWidget("Email Addresses", WidgetId.XTextWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

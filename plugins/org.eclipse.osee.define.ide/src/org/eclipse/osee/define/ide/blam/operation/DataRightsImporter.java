@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.define.ide.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import static org.eclipse.osee.framework.core.enums.CoreArtifactTypes.CodeUnit;
 import static org.eclipse.osee.framework.core.enums.CoreAttributeTypes.DataRightsBasis;
 import static org.eclipse.osee.framework.core.enums.CoreAttributeTypes.DataRightsClassification;
@@ -56,6 +61,14 @@ public class DataRightsImporter extends AbstractBlam {
       buffer.append("<XWidget xwidgetType=\"XFileSelectionDialog\" displayName=\"Path to DataRights XML\" />");
       buffer.append("</xWidgets>");
       return buffer.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Branch", WidgetId.XBranchSelectWidget).andHorizLabel();
+      wb.andWidget("Path to DataRights XML", WidgetId.XTextWithFileSelDialogWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

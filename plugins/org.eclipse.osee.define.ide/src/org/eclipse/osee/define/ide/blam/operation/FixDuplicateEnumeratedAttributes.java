@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.define.ide.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import org.eclipse.osee.define.ide.blam.operation.FixAttributeOperation.Display;
@@ -50,6 +55,14 @@ public class FixDuplicateEnumeratedAttributes extends AbstractBlam {
       builder.append("\" labelAfter=\"true\" horizontalLabel=\"true\" />");
       builder.append("</XWidgets>");
       return builder.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget(SELECT_BRANCH_LABEL, WidgetId.XBranchSelectWidget).andSingleSelect();
+      wb.andWidget(COMMIT_CHANGES_LABEL, WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      return wb.getXWidgetDatas();
    }
 
    @Override

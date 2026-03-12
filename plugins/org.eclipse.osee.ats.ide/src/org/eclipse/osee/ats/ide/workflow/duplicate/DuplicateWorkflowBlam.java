@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.ats.ide.workflow.duplicate;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -205,6 +209,16 @@ public class DuplicateWorkflowBlam extends AbstractBlam {
          "<XWidget xwidgetType=\"XText\" displayName=\"" + TITLE + "\" horizontalLabel=\"true\" defaultValue=\"" + getDefaultTitle() + "\"/>" +
          //
          "</xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("", WidgetId.XListDropViewerWidget);
+      wb.andWidget(DUPLICATE_METHOD, "XCombo(" + CREATE_NEW_WORFLOW_IN_START_STATE + "," + DUPLICATE_WORKFLOW + ")").andHorizLabel().andRequired();
+      wb.andWidget(DUPLICATE_TASKS, WidgetId.XCheckBoxWidget).andHorizLabel().andDefault("false");
+      wb.andWidget(TITLE, WidgetId.XTextWidget).andHorizLabel().andDefault("");
+      return wb.getXWidgetDatas();
    }
 
    /**

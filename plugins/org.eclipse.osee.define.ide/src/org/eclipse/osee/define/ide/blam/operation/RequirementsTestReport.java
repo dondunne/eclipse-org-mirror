@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.define.ide.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import static org.eclipse.osee.framework.core.enums.CoreArtifactTypes.Requirement;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -155,6 +160,13 @@ public class RequirementsTestReport extends AbstractBlam {
    @Override
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XListDropViewer\" displayName=\"artifacts\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("artifacts", WidgetId.XListDropViewerWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

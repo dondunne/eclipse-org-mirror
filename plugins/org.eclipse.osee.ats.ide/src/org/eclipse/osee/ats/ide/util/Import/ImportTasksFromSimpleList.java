@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.ats.ide.util.Import;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -201,6 +205,15 @@ public class ImportTasksFromSimpleList extends AbstractBlam {
       buffer.append("<XWidget xwidgetType=\"XHyperlabelMemberSelection\" displayName=\"" + ASSIGNEES + "\" />");
       buffer.append("</xWidgets>");
       return buffer.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget(getTitlesLabel(), WidgetId.XTextWidget).andToolTip("Enter task titles one per line");
+      wb.andWidget("Create Tasks In State", WidgetId.XComboWidget).andLabelAfter();
+      wb.andWidget("Assignee", WidgetId.XHyperlinkMemberSelWidget);
+      return wb.getXWidgetDatas();
    }
 
    protected void createTeamWfWidget(StringBuffer buffer) {

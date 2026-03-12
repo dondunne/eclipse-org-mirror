@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.ats.ide.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+import org.eclipse.osee.ats.api.util.WidgetIdAts;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -670,6 +675,16 @@ public class DetailedTestStatusBlam extends AbstractBlam {
          "<XWidget xwidgetType=\"XBranchSelectWidget\" displayName=\"Test Results Branch\" toolTip=\"Select a scripts results branch.\" />");
       sb.append("</xWidgets>");
       return sb.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget(WidgetIdAts.XAtsProgramComboWidget).andHorizLabel();
+      wb.andWidget("Versions", WidgetIdAts.XVersionListWidget).andMultiSelect();
+      wb.andWidget("Requirements Branch", WidgetId.XBranchSelectWidget).andToolTip("Select a requirements branch.");
+      wb.andWidget("Test Results Branch", WidgetId.XBranchSelectWidget).andToolTip("Select a scripts results branch.");
+      return wb.getXWidgetDatas();
    }
 
    @Override

@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import static org.eclipse.osee.framework.core.enums.DeletionFlag.EXCLUDE_DELETED;
 import java.util.Arrays;
 import java.util.Collection;
@@ -58,6 +62,14 @@ public class CheckDefaulHierarchy extends AbstractBlam {
       return "<xWidgets><XWidget xwidgetType=\"XBranchSelectWidget\" displayName=\"Branch\" />" +
       //
          "<XWidget xwidgetType=\"XArtifactTypeComboViewer\" displayName=\"Artifact Type\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Branch", WidgetId.XBranchSelectWidget);
+      wb.andWidget("Artifact Type", WidgetId.XArtifactTypeComboViewerWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

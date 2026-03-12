@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.ats.ide.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -512,6 +516,13 @@ public class ModifyActionableItemsBlam extends AbstractBlam {
          + "<XWidget xwidgetType=\"XListDropViewer\" displayName=\"" + getDropLabelStr() + "\" />" +
          //
          "</xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget(getDropLabelStr(), WidgetId.XListDropViewerWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

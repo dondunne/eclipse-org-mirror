@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -70,6 +74,14 @@ public class DeleteUnneededUnspecifiedAttributes extends AbstractBlam {
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XAttributeTypeMultiChoiceSelect\" displayName=\"Attribute Type\" />" + //
          "<XWidget xwidgetType=\"XBranchSelectWidget\" displayName=\"Branch\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Attribute Type", WidgetId.XAttributeTypeMultiChoiceSelectWidget);
+      wb.andWidget("Branch", WidgetId.XBranchSelectWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

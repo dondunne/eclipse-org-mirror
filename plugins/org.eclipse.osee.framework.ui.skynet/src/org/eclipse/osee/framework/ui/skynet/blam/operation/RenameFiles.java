@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import org.eclipse.osee.framework.core.operation.IOperation;
@@ -38,6 +43,15 @@ public class RenameFiles extends AbstractBlam {
    @Override
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XText\" displayName=\"Parent Folder\" /><XWidget xwidgetType=\"XText\" displayName=\"Full Path Pattern\" /><XWidget xwidgetType=\"XText\" displayName=\"Replacement\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Parent Folder", WidgetId.XTextWidget);
+      wb.andWidget("Parent Folder", WidgetId.XTextWidget);
+      wb.andWidget("Parent Folder", WidgetId.XTextWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

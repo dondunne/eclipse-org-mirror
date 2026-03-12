@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.define.ide.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -75,6 +79,14 @@ public class FindMissingOrUnspecifiedAttributes extends AbstractBlam {
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XAttributeTypeMultiChoiceSelect\" displayName=\"Attribute Type\" />" + //
          "<XWidget xwidgetType=\"XBranchSelectWidget\" displayName=\"Branch\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Attribute Type", WidgetId.XAttributeTypeMultiChoiceSelectWidget);
+      wb.andWidget("Branch", WidgetId.XBranchSelectWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

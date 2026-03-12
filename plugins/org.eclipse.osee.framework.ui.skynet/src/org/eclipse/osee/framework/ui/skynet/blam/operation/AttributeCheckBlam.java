@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -72,6 +76,16 @@ public class AttributeCheckBlam extends AbstractBlam {
 
       sb.append("</xWidgets>");
       return sb.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("", WidgetId.XListDropViewerWidget);
+      wb.andWidget(""); sb.append(CHANGE_INCONSISTENT_VALUES); sb.append("", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      wb.andWidget(""); sb.append(MULTIPLE_VALUES); sb.append("", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      wb.andWidget(""); sb.append(ATTRIBUTE); sb.append("", WidgetId.XAttributeTypeMultiChoiceSelectWidget).andSingleSelect();
+      return wb.getXWidgetDatas();
    }
 
    @Override

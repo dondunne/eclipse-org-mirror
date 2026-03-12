@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
@@ -80,6 +85,13 @@ public class SetWorkbenchOverrideIconBlam extends AbstractBlam {
    @Override
    public String getXWidgetsXml() {
       return "<xWidgets><XWidget xwidgetType=\"XFileSelectionDialog\" horizontalLabel=\"true\" labelAfter=\"true\" displayName=\"Image Filename\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Image Filename", WidgetId.XTextWithFileSelDialogWidget).andLabelAfter().andHorizLabel();
+      return wb.getXWidgetDatas();
    }
 
    public static void reloadOverrideImage() {

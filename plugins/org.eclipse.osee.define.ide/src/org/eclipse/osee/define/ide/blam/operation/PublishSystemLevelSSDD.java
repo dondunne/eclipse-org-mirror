@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.define.ide.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -88,6 +92,14 @@ public class PublishSystemLevelSSDD extends AbstractBlam {
       builder.append(BRANCH_VIEW_WIDGET);
       builder.append("</xWidgets>");
       return builder.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Branch", WidgetId.XBranchSelectWidget);
+      wb.andWidget("Branch View", WidgetId.XComboWidget).andHorizLabel();
+      return wb.getXWidgetDatas();
    }
 
    @Override

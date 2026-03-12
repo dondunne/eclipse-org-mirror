@@ -13,6 +13,9 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam;
 
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -94,6 +97,11 @@ public abstract class AbstractBlam implements IDynamicWidgetLayoutListener {
    private final String name;
    protected VariableMap variableMap;
    private BlamEditor editor;
+   protected org.eclipse.osee.framework.ui.skynet.widgets.builder.XWidgetBuilder wb;
+
+   protected void createWidgetBuilder() {
+      wb = new org.eclipse.osee.framework.ui.skynet.widgets.builder.XWidgetBuilder();
+   }
 
    public AbstractBlam() {
       this(null, DEFAULT_DESCRIPTION, BlamUiSource.DEFAULT);
@@ -150,6 +158,14 @@ public abstract class AbstractBlam implements IDynamicWidgetLayoutListener {
             sb.append("</xWidgets>");
             return sb.toString();
       }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Branch", WidgetId.XBranchSelectWidget);
+      wb.andWidget("Branch View", WidgetId.XComboWidget).andHorizLabel();
+      return wb.getXWidgetDatas();
+   }
    }
 
    public List<XWidgetData> getXWidgetItems() {

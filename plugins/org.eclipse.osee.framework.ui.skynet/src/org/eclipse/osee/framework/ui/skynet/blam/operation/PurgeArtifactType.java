@@ -13,6 +13,11 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -49,6 +54,15 @@ public class PurgeArtifactType extends AbstractBlam {
       return "<xWidgets><XWidget xwidgetType=\"XArtifactTypeMultiChoiceSelect\" displayName=\"Artifact Type(s) to purge\" />" + //
          "<XWidget xwidgetType=\"XCheckBox\" horizontalLabel=\"true\" labelAfter=\"true\" displayName=\"Convert Artifacts\" />" + //
          "<XWidget xwidgetType=\"XArtifactTypeComboViewer\" displayName=\"New Artifact Type\" /></xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Artifact Type(s) to purge", WidgetId.XArtifactTypeMultiChoiceSelectWidget);
+      wb.andWidget("Convert Artifacts", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      wb.andWidget("New Artifact Type", WidgetId.XArtifactTypeComboViewerWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

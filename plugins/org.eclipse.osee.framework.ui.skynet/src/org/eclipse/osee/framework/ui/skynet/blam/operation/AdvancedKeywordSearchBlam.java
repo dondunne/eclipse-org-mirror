@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.framework.ui.skynet.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import static org.eclipse.osee.framework.core.enums.DeletionFlag.EXCLUDE_DELETED;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -105,6 +109,16 @@ public class AdvancedKeywordSearchBlam extends AbstractBlam {
          "<XWidget xwidgetType=\"XArtifactTypeComboViewer\" displayName=\"Filter results by Artifact Type\" />" + //
          "<XWidget xwidgetType=\"XAttributeTypeMultiChoiceSelect\" displayName=\"Include Attribute Values in Results\" />" + //
          "</xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Branch", WidgetId.XBranchSelectWidget);
+      wb.andWidget("Keyword groups (one set of keywords per line)", WidgetId.XTextWidget);
+      wb.andWidget("Filter results by Artifact Type", WidgetId.XArtifactTypeComboViewerWidget);
+      wb.andWidget("Include Attribute Values in Results", WidgetId.XAttributeTypeMultiChoiceSelectWidget);
+      return wb.getXWidgetDatas();
    }
 
    @Override

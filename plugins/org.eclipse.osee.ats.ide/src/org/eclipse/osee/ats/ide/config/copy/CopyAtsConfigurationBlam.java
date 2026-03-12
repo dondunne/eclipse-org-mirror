@@ -13,6 +13,12 @@
 
 package org.eclipse.osee.ats.ide.config.copy;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import java.util.List;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+import org.eclipse.osee.ats.api.util.WidgetIdAts;
+
+
 import java.util.Arrays;
 import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -64,6 +70,18 @@ public class CopyAtsConfigurationBlam extends AbstractBlam {
          "<XWidget xwidgetType=\"XCheckBox\" displayName=\"Persist Changes\" labelAfter=\"true\" horizontalLabel=\"true\"/>");
       builder.append("</xWidgets>");
       return builder.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget(WidgetIdAts.XTeamDefinitionComboWidget);
+      wb.andWidget(WidgetIdAts.XActionableItemComboWidget);
+      wb.andWidget("Name Search String", WidgetId.XTextWidget);
+      wb.andWidget("Name Search String", WidgetId.XTextWidget);
+      wb.andWidget("Retain Team Leads/Members", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      wb.andWidget("Persist Changes", WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      return wb.getXWidgetDatas();
    }
 
    private IAtsTeamDefinition getSelectedTeamDefinition() {

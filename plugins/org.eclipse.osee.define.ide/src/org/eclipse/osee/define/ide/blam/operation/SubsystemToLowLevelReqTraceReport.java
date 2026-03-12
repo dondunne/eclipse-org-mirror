@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.define.ide.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import static org.eclipse.osee.framework.core.enums.DeletionFlag.INCLUDE_DELETED;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -303,6 +307,17 @@ public class SubsystemToLowLevelReqTraceReport extends AbstractBlam {
          "<XWidget xwidgetType=\"XCombo()\" displayName=\"Branch View\" horizontalLabel=\"true\"/>" + //
          "<XWidget xwidgetType=\"XCheckBox\" displayName=\"" + LEGACY_DAL + "\" labelAfter=\"true\" horizontalLabel=\"true\"/>" + //
          "</xWidgets>";
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Lower Level Requirements", WidgetId.XListDropViewerWidget);
+      wb.andWidget("Lower Level Requirements", WidgetId.XListDropViewerWidget);
+      wb.andWidget("Low Level Requirement Type(s)", WidgetId.XArtifactTypeMultiChoiceSelectWidget).andMultiSelect();
+      wb.andWidget("Branch View", WidgetId.XComboWidget).andHorizLabel();
+      wb.andWidget(LEGACY_DAL, WidgetId.XCheckBoxWidget).andLabelAfter().andHorizLabel();
+      return wb.getXWidgetDatas();
    }
 
    @Override

@@ -13,6 +13,10 @@
 
 package org.eclipse.osee.define.ide.blam.operation;
 
+import org.eclipse.osee.framework.core.widget.XWidgetData;
+import org.eclipse.osee.framework.core.widget.WidgetId;
+
+
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -133,6 +137,14 @@ public class FindDuplicateArtifactNames extends AbstractBlam {
       builder.append(BRANCH_VIEW_WIDGET);
       builder.append("</xWidgets>");
       return builder.toString();
+   }
+
+   @Override
+   public List<XWidgetData> getXWidgetItems() {
+      createWidgetBuilder();
+      wb.andWidget("Root Artifacts", WidgetId.XListDropViewerWidget);
+      wb.andWidget("Branch View", WidgetId.XComboWidget).andHorizLabel();
+      return wb.getXWidgetDatas();
    }
 
    @Override
