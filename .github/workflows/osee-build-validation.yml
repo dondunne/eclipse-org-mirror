@@ -106,7 +106,7 @@ jobs:
       - name: osee_server_main_ref
         id: osee_server_main_ref
         shell: bash
-        run: echo "osee_server_main_ref=ghcr.io/${{ github.repository }}/osee-server:latest" >> "$GITHUB_OUTPUT"
+        run: echo "osee_server_main_ref=ghcr.io/eclipse-osee/org.eclipse.osee/osee-server:latest" >> "$GITHUB_OUTPUT"
 
       - name: osee_server_latest_ref
         id: osee_server_latest_ref
@@ -125,7 +125,7 @@ jobs:
       - name: osee_postgres_main_ref
         id: osee_postgres_main_ref
         shell: bash
-        run: echo "osee_postgres_main_ref=ghcr.io/${{ github.repository }}/osee-postgres:latest" >> "$GITHUB_OUTPUT"
+        run: echo "osee_postgres_main_ref=ghcr.io/eclipse-osee/org.eclipse.osee/osee-postgres:latest" >> "$GITHUB_OUTPUT"
 
       - name: osee_postgres_latest_ref
         id: osee_postgres_latest_ref
